@@ -1,0 +1,29 @@
+20/8/2025
+- [x] Viết list last comment
+- [x] Viết tooltip
+- [x] Viết lại caret
+- [x] giặt đồ
+- [ ] sửa xe chảy xăng
+- [ ] mua giấy nhám
+- [ ] chà nhám sơn
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 

@@ -1,4 +1,4 @@
-==========================================================synchronous - asynchronous: đồng bộ - không đồng bộ==========================================================
+==========synchronous - asynchronous: đồng bộ - không đồng bộ===========
 java script là 1 ngôn ngữ synchronous (đồng bộ), blocking (chặn(có thể là đóng)), và single-threaded(đơn luồng)
 synchronous: code đc thực thi từ trên xuống dưới, mỗi thời điểm thực thi 1 dòng
 blocking: dù thế nào thì javascript cũng luôn thực thi theo thứ tự từ trên xuống, từ trước đến sau, vd hàm a phải thực thi 1 chức năng chuyên sâu tốn 1ph, javascript sẽ chạy cho xong hàm a ms qua hàm b
@@ -6,7 +6,7 @@ vấn đề:
 trong 1 nhà hàng ,các khách hàng gọi món , ta không thể xử lý nguyên liệu xong nấu từng món lặp đi lặp lại, mà ta nên xử lý bất đồng bộ , trong lúc chờ món này đang trong quá trình nấu thì ta xử lý món khác, nấu món khác,...
 khi chạy web, ta thường truy xuất dữ liệu, xử lý dữ liệu, render html + dữ liệu, mà quá trình truy xuất dữ liệu khá lâu khiến ng dùng chờ, nên t muốn javascript chạy không đồng bộ để có thể làm việc khác như render html rỗng trước, như cấu trúc tính năng cốt lõi next js render html cùng lúc xử lý truy vấn database, vì vậy, chúng ta cần javascript có hành vi không đồng bộ để xử lý
 
-==========================================================SetTimeout==========================================================
+=========SetTimeout===========
 setTimeout() là 1 hàm thực thi 1 khối lệnh 1 lần sau  khoảng thời gian xác định, hàm này là hàm không đồng bộ, khi chạy đến hàm này, trong lúc code trong hàm đc xử lý, nó sẽ chạy tiếp các phần tiếp theo ở ngoài hàng, đa luồng
 setTimeout(function(hàm cần chạy), duration(khoảng thời gian mili giây muốn chờ), param1, param2,...) các param là các tham số truyền vào hàm
 vd:
@@ -16,12 +16,12 @@ function greet(name){
 setTimeout(greet, 2000, 'Vishwas')
     ->log 'hello Vishwas' to the consolo after 2 second (đầu ra: xuất nội dung sau thời gian chờ 2 giây)
 muốn hủy thời gian chờ và chạy luôn, ta dùng hàm clearTimeout()
-==========================================================setInterval()==========================================================
+=========setInterval()============
 thực thi 1 khối lệnh lặp lại trong một khoảng thời gian
 setInterval(function(hàm cần chạy), duration(khoảng thời gian mili giây muốn chờ), param1, param2,...) 
 clearInterval() ngừng hàm setInterval ở trên
 và các hàm vừa học ở trên đều là các hàm không đồng bộ 
-==========================================================CALLBACK==========================================================
+==========CALLBACK============
 callback()
 function như 1 class object, điều này có nghĩa function như 1 object, function có thể được truyền dưới dạng đối số cho 1 hàm khác, cũng có thể được trả về dưới dạng giá trị từ hàm khác (gán vào 1 biến)
 hàm nhận hàm callback làm đối số được gọi là higher order function (hàm bao bọc bên ngoài, nằm trên nên đc xếp bậc cao hơn)
@@ -36,7 +36,7 @@ function higherOrderFunction (callback){
 higherOrderFunction(greet)
 
 synchronous callbacks: callback chỉ là truyền hàm này vào hàm khác, code vẫn chạy theo thứ tự từ trên xuống 1 cách đồng bộ, chờ hàm con chạy xong mới chạy tiếp, để callback chạy không đồng bộ, ta phải sử dụng các hàm có cơ chế không đồng bộ, ví dụ lồng hàm callback vào hàm setTimeout
-==========================================================Promises()==========================================================
+==========Promises()=============
 promises là 1 đối tượng sẽ đc ta khai báo ra, nó là 1 hàm không đồng bộ. Đối tượng này là 1 "lời hứa", khi nào ta cần nó thực hiện lời hứa thì ta sẽ gọi hàm then() để lấy kết quả mà nó đã hứa sẽ làm giùm mình, nó ko hẳn là 1 lời hứa mà là 1 lời cam đoan nhận 1 công việc mà ta giao cho nó
 
 tạo 1 đối tượng Promise và đối tượng này có constructor là 1 callback, và callback này chứa  resolve và reject, bên trong hàm promise này ta xử lý các điều kiện, nếu thành công, promise trả về hàm resolve, không thì trả về hàm Reject, vậy hàm resolve và reject này là 2 hàm có sẵn của promise, promise truyền 2 hàm này vào callback và trong callback ta dùng lại, cách truyền trên phần callback ở trên có 1 ví dụ truyền dữ liệu vào hàm callback
@@ -81,7 +81,7 @@ getSomeThing.then((result) => {
 }).then((result) => {
     console.log(result);
 });
-==========================================================Fetch API==========================================================
+==========Fetch API============
 Fetch là 1 hàm dùng tạo 1 yêu cầu request gửi đi và sau khi gửi đi, fetch nhận resolve trả về và đưa kết quả đó vào lời hứa và trả về lời hứa, ta có thể hiểu toàn bộ fetch là 1 lời hứa, ta dùng hàm then() để thực thi lời hứa như cách coi fetch là 1 promise, promise này cũng có resolve và reject, resolve sẽ trả về hàm then() và reject sẽ trả về hàm catch()
 fetch("class/student.json").then((response) => {
     console.log("resolve ", response)
@@ -100,7 +100,7 @@ hoặc
 }).then(data => {
     console.log(data)
 });
-==========================================================Async & Await==========================================================
+===========Async & Await==========
 Async & Await ko phải 1 đối tượng, 1 phương thức, hàm hay biến, đây là 1 cú pháp khai báo đc js thêm vào sau này, là 1 cách để định nghĩa không đồng bộ cho js hiểu
 Async & Await rút gọn các cú pháp asynchronous và promise cho đỡ lộn xộn
 
@@ -129,7 +129,10 @@ const data = await response.json()
 console.log(data);
 nếu ko có await, test có thể rỗng vì hàm fetch là hàm không đồng bộ, nó có thể chưa kịp get data từ api mà đã bị gọi lấy dữ liệu, nên await ở đây sẽ bắt đoạn code chờ 1 cách không đồng bộ để lấy data, có thể hiểu và coi cả cụm là 1 promise
 
-==========================================================Event Loop==========================================================
+=========Event Loop==========
 
-==========================================================AJAX==========================================================
+=========AJAX================
+
+=========ES6================
+=========Arows function================
 ajax là viết tắt của asynchronous javascript and xml
